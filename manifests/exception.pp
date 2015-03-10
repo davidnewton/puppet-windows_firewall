@@ -72,7 +72,7 @@ define windows_firewall::exception(
       $fw_command = 'portopening'
       $allow_context = "protocol=${protocol} ${port_param}=${local_port}"
       validate_re($protocol,['^(TCP|UDP)$'])
-      validate_re($local_port,['[0-9]{1,5}'])
+      validate_re($local_port,['(any|[0-9]{1,5}-[0-9]{1,5})|([0-9]{1,5})'])
     } else {
       $fw_command = 'allowedprogram'
       $allow_context = "program=\"${program}\""
